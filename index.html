@@ -1085,6 +1085,130 @@
     .fade-in-delay-1 { transition-delay: 0.08s; }
     .fade-in-delay-2 { transition-delay: 0.16s; }
     .fade-in-delay-3 { transition-delay: 0.24s; }
+    /* ── Achievements Carousel ── */
+    :root {
+      --ach-item-w: clamp(280px, 60vw, 800px);
+    }
+    #achievements {
+      padding: 6rem 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(15, 17, 23, 0.4) 50%, var(--bg) 100%);
+    }
+    .achievements-header {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .carousel-wrapper {
+      width: 100vw;
+      margin-top: 3.5rem;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      width: max-content;
+      animation: slideTrack 15s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+    }
+    .carousel-track:hover,
+    .carousel-track:hover .ach-item,
+    .carousel-track:hover .ach-title {
+      animation-play-state: paused;
+    }
+
+    .ach-item {
+      width: var(--ach-item-w);
+      padding: 0 1.5vw;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0.4;
+      transform: scale(0.9);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .ach-item img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    .ach-title {
+      margin-top: 1.5rem;
+      font-size: 1.15rem;
+      font-family: var(--font-display);
+      color: var(--ink);
+      opacity: 0;
+      transform: translateY(10px);
+      text-align: center;
+    }
+    .ach-sub {
+      font-size: 0.85rem;
+      color: var(--accent-l);
+      font-family: var(--font-body);
+      margin-top: 0.25rem;
+    }
+
+    @keyframes slideTrack {
+      0%, 25% { transform: translateX(calc(50vw - (var(--ach-item-w) / 2))); }
+      33.33%, 58.33% { transform: translateX(calc(50vw - (var(--ach-item-w) * 1.5))); }
+      66.66%, 91.66% { transform: translateX(calc(50vw - (var(--ach-item-w) * 2.5))); }
+      100% { transform: translateX(calc(50vw - (var(--ach-item-w) * 3.5))); }
+    }
+
+    .ach-item:nth-child(1) { animation: focusItem1 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(2) { animation: focusItem2 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(3) { animation: focusItem3 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(4) { animation: focusItem4 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+
+    .ach-item:nth-child(1) .ach-title { animation: titleItem1 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(2) .ach-title { animation: titleItem2 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(3) .ach-title { animation: titleItem3 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+    .ach-item:nth-child(4) .ach-title { animation: titleItem4 15s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+
+    @keyframes focusItem1 {
+      0%, 25% { opacity: 1; transform: scale(1); filter: brightness(1); }
+      33.33%, 100% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+    }
+    @keyframes focusItem2 {
+      0%, 25% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+      33.33%, 58.33% { opacity: 1; transform: scale(1); filter: brightness(1); }
+      66.66%, 100% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+    }
+    @keyframes focusItem3 {
+      0%, 58.33% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+      66.66%, 91.66% { opacity: 1; transform: scale(1); filter: brightness(1); }
+      100% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+    }
+    @keyframes focusItem4 {
+      0%, 91.66% { opacity: 0.3; transform: scale(0.9); filter: brightness(0.5); }
+      100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+    }
+
+    @keyframes titleItem1 {
+      0%, 25% { opacity: 1; transform: translateY(0); }
+      33.33%, 100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes titleItem2 {
+      0%, 25% { opacity: 0; transform: translateY(10px); }
+      33.33%, 58.33% { opacity: 1; transform: translateY(0); }
+      66.66%, 100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes titleItem3 {
+      0%, 58.33% { opacity: 0; transform: translateY(10px); }
+      66.66%, 91.66% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(10px); }
+    }
+    @keyframes titleItem4 {
+      0%, 91.66% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
@@ -1111,7 +1235,8 @@
     <div class="grid-line grid-line-y line-6"></div>
 
     <div class="hero-container">
-      <h1>Yassine Maazouz,<br>Embedded systems &amp;<br><em>IoT Engineer</em>.</h1>
+      <div style="font-size: 1.7rem; color: var(--accent-l); font-family: var(--font-display); margin-bottom: 0.5rem; letter-spacing: 0.05em;">Yassine Maazouz</div>
+      <h1>Embedded Systems <br>&amp; <em>IoT Engineer</em>.</h1>
       <p class="hero-sub">Third-year Computer Systems Engineering student at MEDTECH, Tunis. I build reliable systems that bridge hardware constraints with modular software architectures.</p>
       <div class="hero-links">
         <a href="#projects" class="btn btn-primary">Explore Projects</a>
@@ -1521,6 +1646,37 @@
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section id="achievements">
+    <div class="achievements-header">
+      <p class="section-label fade-in">Awards &amp; Recognitions</p>
+      <h2 class="fade-in" style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 400; color: var(--ink);">Podiums &amp; Certificates</h2>
+    </div>
+    
+    <div class="carousel-wrapper fade-in">
+      <div class="carousel-track">
+        <div class="ach-item">
+          <img src="placeholder.jpg" alt="1st Place Project Day 2025">
+          <div class="ach-title">🥇 1st Place — Project Day 2025<div class="ach-sub">Secure Fit Prototype</div></div>
+        </div>
+        <div class="ach-item">
+          <img src="placeholder.jpg" alt="Podium Winner Project Day 2026">
+          <div class="ach-title">🏆 Podium Winner — Project Day 2026<div class="ach-sub">Medicore Healthstation</div></div>
+        </div>
+        <div class="ach-item">
+          <img src="placeholder.jpg" alt="Certificate of Excellence">
+          <div class="ach-title">📜 Certificate of Excellence<div class="ach-sub">Network Defense Sprint</div></div>
+        </div>
+        <!-- Duplicate of first item for seamless loop -->
+        <div class="ach-item">
+          <img src="placeholder.jpg" alt="1st Place Project Day 2025">
+          <div class="ach-title">🥇 1st Place — Project Day 2025<div class="ach-sub">Secure Fit Prototype</div></div>
+        </div>
+      </div>
     </div>
   </section>
 
